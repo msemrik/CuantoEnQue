@@ -1,0 +1,20 @@
+fat jar
+
+configurations {
+    provided
+    compile.extendsFrom provided
+}
+
+
+jar {
+    dependsOn configurations.runtime
+    from {
+        (configurations.runtime - configurations.provided).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+}
+
+gradle clean build
+
+para executar jar:
+java -jar build/libs/gs-rest-service-0.1.0.jar
