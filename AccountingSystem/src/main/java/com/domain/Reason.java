@@ -1,20 +1,22 @@
 package com.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Reason {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "YOUR_ENTITY_SEQ")
+    @SequenceGenerator(name = "YOUR_ENTITY_SEQ", sequenceName = "YOUR_ENTITY_SEQ", allocationSize = 1)
     private Long id;
 
     private String name;
 
     public Reason(String name) {
         this.name = name;
+    }
+
+    public Reason() {
     }
 
     public Long getId() {

@@ -1,16 +1,14 @@
 package com.domain;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.Date;
 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 public abstract class Account {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "YOUR_ENTITY_SEQ2")
+    @SequenceGenerator(name = "YOUR_ENTITY_SEQ2", sequenceName = "YOUR_ENTITY_SEQ2", allocationSize = 1)
     private Long id;
 
     private String name;
@@ -29,6 +27,9 @@ public abstract class Account {
         this.currency = currency;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Account() {
     }
 
 

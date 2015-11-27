@@ -1,47 +1,46 @@
 apply plugin: 'java'
 apply plugin: 'java-library-distribution'
 
-/*
+
 buildscript {
     repositories {
-        maven {
-            url 'http://repositories.swacorp.com:9092/nexus/content/groups/EBSGroup'
-        }
+
+            mavenCentral()
+
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
     }
 }
-*/
-//apply plugin: 'spring-boot'
+apply plugin: 'spring-boot'
 
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-/*
+
 applicationDefaultJvmArgs = [
         "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
 ]
-*/
+
 configurations {
     provided
     compile.extendsFrom provided
 }
 
 jar {
-    dependsOn configurations.runtime
-    from {
-        (configurations.runtime - configurations.provided).collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
+
     baseName = 'gs-rest-service'
     version =  '0.1.0'
     manifest {
+
         attributes('Main-Class':'com.hibernate.HibernateTest')
+
     }
 
+
 }
+
+
 
 
 sourceCompatibility = 1.7
@@ -58,7 +57,7 @@ task wrapper(type: Wrapper) {
 
 
 repositories {
-    maven {
+   /*maven {
         url 'http://repositories.swacorp.com:9092/nexus/content/groups/EBSGroup'
     }
     maven {
@@ -70,14 +69,13 @@ repositories {
     maven {
         url 'http://xldcif22:8081/nexus/content/repositories/springsource'
     }
-
+*/
+    mavenCentral()
 }
 
 dependencies {
 
-    def springVersion = '4.2.0.RELEASE'
-    def jsonVersion = '2.6.1'
-    //compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-web")
     testCompile("junit:junit")
     compile('javax.servlet:javax.servlet-api:3.1.0')
     compile('javax.servlet:jstl:1.2')
@@ -87,8 +85,8 @@ dependencies {
     compile('org.hibernate.common:hibernate-commons-annotations:4.0.1.Final')
     compile('org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final')
     compile('org.hibernate:hibernate-entitymanager:4.0.1.Final')
-
-    compile('com.oracle:ojdbc6:11.2.0.2.0')
+    //compile('com.oracle:ojdbc6:11.2.0.2.0')
+    compile('mysql:mysql-connector-java:5.1.9')
 
 
     compile('javax.validation:validation-api:1.0.0.GA')
@@ -96,12 +94,12 @@ dependencies {
 
 }
 
-distZip.shouldRunAfter(build)
-/*
+
 task copyToLib(type: Copy) {
     into "$buildDir/libs"
     from configurations.runtime
 }
-build.dependsOn(copyToLib)
 
-*/
+copyToLib.dependsOn(build)
+
+

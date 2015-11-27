@@ -5,9 +5,9 @@ import java.util.Date;
 
 @Entity
 public class Movement {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "YOUR_ENTITY_SEQ2")
+    @SequenceGenerator(name = "YOUR_ENTITY_SEQ2", sequenceName = "YOUR_ENTITY_SEQ2", allocationSize = 1)
     private Long id;
     @ManyToOne
     private BankAccount origAccount;
@@ -27,6 +27,9 @@ public class Movement {
         this.amount=amount;
         this.movementDate=movementDate;
         this.reason=reason;
+    }
+
+    public Movement() {
     }
 
 

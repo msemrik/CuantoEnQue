@@ -25,4 +25,8 @@ private String accountNumber;
         this.bank = bank;
         this.accountNumber = accountNumber;
     }
+
+    public BankAccount() {
+
+    }
 }

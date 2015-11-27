@@ -14,7 +14,29 @@ jar {
         }
 }
 
+
+despues de instalar
+mysqld --initialize
+mysqld_safe --skip-grant-tables
+mysql -u root -p
+en archivo .err genera pass temporaria
+kdp/NHh8<Fq>
+
+SET PASSWORD = PASSWORD('root');
+
+CREATE DATABASE your_database;
+use your_database
+
+
+mysqladmin -u root shutdown
+
+
 gradle clean build
 
 para executar jar:
 java -jar build/libs/gs-rest-service-0.1.0.jar
+
+
+
+Polimorfismo
+http://chriswongdevblog.blogspot.com.ar/2009/10/polymorphic-one-to-many-relationships.html

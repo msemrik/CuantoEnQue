@@ -1,6 +1,6 @@
 package com.DAO;
 
-import com.com.util.HibernateUtil;
+import com.util.HibernateUtil;
 import org.hibernate.Session;
 
 /**
@@ -17,7 +17,5 @@ public class DBAccess {
     public static void setSession(Session session) {
         DBAccess.session = session;
     }
-
-
 
 }

@@ -26,4 +26,8 @@ private String numeroTel;
         this.nombre = nombre;
         this.numeroTel = numeroTel;
     }
+
+    public Person() {
+
+    }
 }
