@@ -47,7 +47,7 @@ public class MovementDBAccess {
 
         session.getTransaction().begin();
 
-        Movement movement = new Movement(bankAccount,bankAccount, (long) 10,new Date(),reason);
+        Movement movement = new Movement(bankAccount,bankAccount, (long) 15,new Date(),reason);
         session.save(movement);
 
         session.getTransaction().commit();

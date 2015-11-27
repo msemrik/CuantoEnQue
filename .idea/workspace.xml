@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b6b4453-dcfb-4659-8cca-b004e78c322c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountingSystem/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/Controller/Application.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/Controller/MainController.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/AccountingSystem/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/AccountingSystem.iml" afterPath="$PROJECT_DIR$/AccountingSystem/AccountingSystem.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/AccountingSystem.ipr" afterPath="$PROJECT_DIR$/AccountingSystem/AccountingSystem.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/build.gradle" afterPath="$PROJECT_DIR$/AccountingSystem/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/file.info" afterPath="$PROJECT_DIR$/AccountingSystem/file.info" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/DBAccess.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/DBAccess.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/MovementDBAccess.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/MovementDBAccess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Account.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Account.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/BankAccount.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/BankAccount.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Movement.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Movement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Person.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Person.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Reason.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Reason.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/hibernate/HibernateTest.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/hibernate/HibernateTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/util/HibernateUtil.java" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/java/com/util/HibernateUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AccountingSystem/src/main/resources/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/AccountingSystem/src/main/resources/hibernate.cfg.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CuantoEnQue.iml" afterPath="$PROJECT_DIR$/CuantoEnQue.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
     </list>
     <ignored path="CuantoEnQue.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,16 +58,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/resources/public/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.ctrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/resources/public/js/main.ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -128,8 +92,10 @@
         <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/Controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,12 +120,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AccountingSystem/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.04336735">
+            <state vertical-scroll-proportion="-0.6296296">
               <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovementDBAccess.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/MovementDBAccess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.73031026">
+              <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -434,11 +412,11 @@
         <option value="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Movement.java" />
         <option value="$PROJECT_DIR$/AccountingSystem/src/main/resources/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Account.java" />
-        <option value="$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/MovementDBAccess.java" />
         <option value="$PROJECT_DIR$/AccountingSystem/build.gradle" />
         <option value="$PROJECT_DIR$/AccountingSystem/src/main/java/com/Controller/MainController.java" />
         <option value="$PROJECT_DIR$/AccountingSystem/src/main/java/com/hibernate/HibernateTest.java" />
         <option value="$PROJECT_DIR$/AccountingSystem/.gitignore" />
+        <option value="$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/MovementDBAccess.java" />
       </list>
     </option>
   </component>
@@ -509,6 +487,144 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="AccountingSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccountingSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccountingSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccountingSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccountingSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DAO" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CuantoEnQue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AccountingSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -973,16 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/MovementDBAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/domain/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1069,14 +1175,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/Controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/hibernate/HibernateTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1087,9 +1185,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AccountingSystem/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04336735">
+        <state vertical-scroll-proportion="-0.6296296">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/Controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AccountingSystem/src/main/java/com/DAO/MovementDBAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73031026">
+          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
