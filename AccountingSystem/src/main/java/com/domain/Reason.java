@@ -3,11 +3,13 @@ package com.domain;
 import javax.persistence.*;
 
 @Entity
-public class Reason {
+@Table(name = "reason",uniqueConstraints = {@UniqueConstraint(columnNames={"name"})})
+public class Reason implements DBObject{
 
     @Id
-    @GeneratedValue(generator = "YOUR_ENTITY_SEQ")
-    @SequenceGenerator(name = "YOUR_ENTITY_SEQ", sequenceName = "YOUR_ENTITY_SEQ", allocationSize = 1)
+    @GeneratedValue(generator = "REASON_SEQ")
+    @SequenceGenerator(name = "REASON_SEQ", sequenceName = "REASON_SEQ", allocationSize = 1)
+
     private Long id;
 
     private String name;

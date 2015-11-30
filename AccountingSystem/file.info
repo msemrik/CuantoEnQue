@@ -31,12 +31,19 @@ use your_database
 mysqladmin -u root shutdown
 
 
-gradle clean build
+gradle clean copyToLib
+gradle startServer
 
 para executar jar:
 java -jar build/libs/gs-rest-service-0.1.0.jar
 
+remote repo:
+git pull github
+git push github
 
 
 Polimorfismo
 http://chriswongdevblog.blogspot.com.ar/2009/10/polymorphic-one-to-many-relationships.html
+
+Criteria
+http://www.tutorialspoint.com/hibernate/hibernate_criteria_queries.htm

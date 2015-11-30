@@ -1,9 +1,6 @@
 package com.domain;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 ;import java.util.Date;
 
@@ -12,19 +9,16 @@ import javax.persistence.InheritanceType;
  * Created by x217204 on 11/17/2015.
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "TYPE")
+@PrimaryKeyJoinColumn(name="id")
+@Table(name = "person",uniqueConstraints = {@UniqueConstraint(columnNames={"currency_id"})})
 public class Person extends Account {
 
-private String nombre;
-
-private String numeroTel;
+private String phoneNumber;
 
 
-    public Person(String name, Long sadder, String currency, Date startDate,Date endDate, String nombre, String numeroTel) {
+    public Person(String name, Long sadder, Currency currency, Date startDate,Date endDate, String nombre, String phoneNumber) {
         super( name, sadder, currency, startDate,endDate);
-        this.nombre = nombre;
-        this.numeroTel = numeroTel;
+        this.phoneNumber = phoneNumber;
     }
 
     public Person() {

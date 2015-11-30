@@ -2,25 +2,25 @@ package com.domain;
 
 import javax.persistence.*;
 import java.util.Date;
-
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@MappedSuperclass
-public abstract class Account {
+@Entity
+@Table(name = "account")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public abstract class Account implements DBObject {
     @Id
-    @GeneratedValue(generator = "YOUR_ENTITY_SEQ2")
-    @SequenceGenerator(name = "YOUR_ENTITY_SEQ2", sequenceName = "YOUR_ENTITY_SEQ2", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @SequenceGenerator(name = "ACCOUNT_SEQ", sequenceName = "ACCOUNT_SEQ", allocationSize = 1)
     private Long id;
 
     private String name;
 
     private Long sadder;
-
-    private String currency;
+    @ManyToOne
+    private Currency currency;
 
     private Date startDate;
     private Date endDate;
 
-    protected Account(String name, Long sadder, String currency, Date startDate,Date endDate) {
+    protected Account(String name, Long sadder, Currency currency, Date startDate,Date endDate) {
         this.id = id;
         this.name = name;
         this.sadder = sadder;
@@ -57,11 +57,11 @@ public abstract class Account {
         this.sadder = sadder;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
