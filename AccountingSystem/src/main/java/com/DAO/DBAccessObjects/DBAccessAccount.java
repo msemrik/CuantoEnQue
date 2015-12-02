@@ -3,6 +3,7 @@ package com.DAO.DBAccessObjects;
 import com.DAO.DBAccess;
 import com.domain.Account;
 import com.domain.DBObject;
+import com.util.CoreException;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,8 @@ public class DBAccessAccount implements DBAccessObject {
     }
 
     @Override
-    public DBObject getObjectById(long id) {
+    public DBObject getObjectById(long id) throws CoreException {
+        try{
         logger.info("Loading: Account: "+ id);
 
         Session session = DBAccess.getSession();
@@ -34,7 +36,10 @@ public class DBAccessAccount implements DBAccessObject {
         logger.info("Successfully Loaded: Account: "+ returnObject);
 
         return (Account) returnObject;
-
+        } catch (Exception e) {
+            logger.error("Error Loading Account: " + id + ". Exception:" + e);
+            throw new CoreException("Error Loading Account: " + id + ". Exception:" + e);
+        }
     }
 
 

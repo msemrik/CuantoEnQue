@@ -2,11 +2,12 @@ package com.domain.VO;
 
 import com.DAO.DBAccessObjects.DBAccessAccount;
 import com.DAO.DBAccessObjects.DBAccessCurrency;
-import com.DAO.DBAccessObjects.DBAccessReason;
+import com.DAO.DBAccessObjects.DBAccessCategory;
 import com.domain.Account;
 import com.domain.Currency;
 import com.domain.Movement;
-import com.domain.Reason;
+import com.domain.Category;
+import com.util.CoreException;
 
 import java.util.Date;
 
@@ -36,14 +37,14 @@ public class MovementVO {
         this.comment = comment;
     }
 
-    public Movement createMovementfromVO(){
+    public Movement createMovementfromVO() throws CoreException {
 
         Account origAccount = (Account) DBAccessAccount.getInstance().getObjectById(Long.parseLong(this.origAccount));
         Account destAccount = (Account) DBAccessAccount.getInstance().getObjectById(Long.parseLong(this.destAccount));
-        Reason reason = (Reason) DBAccessReason.getInstance().getObjectById(Long.parseLong(this.reason));
+        Category category = (Category) DBAccessCategory.getInstance().getObjectById(Long.parseLong(this.reason));
         Currency currency = (Currency) DBAccessCurrency.getInstance().getObjectById(Long.parseLong(this.currency));
 
-        return new Movement(origAccount,destAccount,amount,this.movementDate,reason,currency,this.comment);
+        return new Movement(origAccount,destAccount,amount,this.movementDate, category,currency,this.comment);
     }
 
     public String getOrigAccount() {

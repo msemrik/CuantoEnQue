@@ -35,7 +35,7 @@ gradle clean copyToLib
 gradle startServer
 
 para executar jar:
-java -jar build/libs/gs-rest-service-0.1.0.jar
+java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n -jar build/libs/gs-rest-service-0.1.0.jar
 
 remote repo:
 git pull github

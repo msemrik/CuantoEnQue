@@ -3,87 +3,150 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Accounting System</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="js/app.js"></script>
+	<script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/app.js"></script>
     <script src="js/main.ctrl.js"></script>
     <script src="js/movement.ctrl.js"></script>
-	<script src="js/jsfunction.js"></script>
-	<script src="js/ui-bootstrap-0.14.3.js"></script>
-
-	</head>
+    <script src="js/jsfunction.js"></script>
+    <script src="js/tab.ctrl.js"></script>
+	<script src="js/alert.ctrl.js"></script>
+</head>
 <body ng-app="app" ng-controller="MainController as main">
 
-<div id="header" class="page-header"> </div>
+
+
+
+<div id="header" class="page-header"></div>
 
 <div class="container">
-    
-<!--
-    <div class="input-group">
-        <span class="input-group-addon">
-            <span class="glyphicon glyphicon-search"></span>
-        </span>
-        <input type="text" class="form-control" ng-model="main.searchInput">
+
+    <div ng-controller="AlertsCtrl as alert">
+<button ng-click="toggleModal()" class="btn btn-default">Open modal</button>
+		<div ng-repeat="(key,val) in alerts " class="alert {{key}}">
+            <div ng-repeat="msg in val track by $index">{{msg.Message}}<a
+                    ng-click="alert.revert(msg.Id,msg.TypeOfMovement)">Revert</a> <a ng-click="alert.clearAlerts()">Close</a>
+            </div>
+        </div>
+	<modal id="modalDiv" class="active" title={{alert.modalMessage}} visible="showModal">
+    <div>
+        {{alert.modalMessage}}
     </div>
-    <h3>A list of TV shows</h3>
-    <ul class="list-group">
-        <li class="list-group-item"
-            ng-repeat="show in main.shows | filter:main.searchInput | orderBy:main.order.key:main.order.reverse"><span
-                class="glyphicon glyphicon-star" ng-if="show.favorite"></span> {{show.title}} <span class="badge">{{show.year}}</span>
-        </li>
-    </ul>
+	</modal>
+    </div>
 
--->
-    <div class="clearfix"></div>
-    <div ng-controller="MovementController as mov">
-        <h3>{{mov.title}}</h3>
 
-        <form name="addMovement" class="form" ng-submit="mov.addNewMovement(addMovement.$valid)">
-            <!--
-            <div class="form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" ng-model="main.new.title" required/>
-            </div>
-            <div class="form-group">
-                <label>Year</label>
-                <input type="number" min="1900" max="2030" class="form-control" ng-model="main.new.year" required/>
-            </div>
-            <div class="row">
-                <div class="col-xs-6">
-                    <label>Favorite: <input type="checkbox" ng-model="main.new.favorite"/></label>
-                </div>
-                <div class="col-xs-6">
-                    <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add
-                    </button>
-                </div>
-            </div>
-            -->
-            <h5>Origin Account</h5>
-            <select id="accountsdest" class="form-control pull-right" ng-model="mov.accountdest" ng-options="accountdest.name for accountdest in mov.accountsdest"></select>
-            
-			<h5>Destination Account</h5>
-            <select id="accountsorig" class="form-control pull-right" ng-model="mov.accountorig" ng-options="accountorig.name for accountorig in mov.accountsorig"></select>
-            
-			<h5>Reason</h5>
-            <select id="reason" class="form-control pull-right" ng-model="mov.reason" ng-options="reason.name for reason in mov.reasons"></select>
-			
-			<h5>Amount</h5>            
-			<input type="number" min="0" class="form-control-short-amount" value="0" ng-model="mov.amount" required/>
-			<select id="currencies" class="form-control-short" ng-model="mov.currency" ng-options="currency.symbol for currency in mov.currencies"></select>
-            <input type="checkbox" ng-click="mov.updateDate($event, e.id)" ng-model="mov.actualDate" > Use actual date
-			<input id="date" ng-hide="mov.actualDate" name="date" type="date" ng-model="mov.date" placeholder="MM-dd-yyyy"/>
-			<h5>Comment</h5> 
-			​<textarea id="txtArea" class="form-control-comment" ng-model="mov.comment" required></textarea>			
-			
-			<button class="btn btn-info pull-right" ng-class="{true:'btn-success', false:'btn-info'}[addMovement.$valid]"  ><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+    <div ng-controller="TabController as tab">
+        <section>
+            <ul class="nav nav-pills">
+                <li><a ng-class="{true:'active', false:'inactive'}[tab.isSelected(1)]" ng-click="tab.setSelected(1)">
+                    Movement</a></li>
+                <li><a ng-class="{true:'active', false:'inactive'}[tab.isSelected(2)]" ng-click="tab.setSelected(2)">Report</a>
+                </li>
+                <li><a ng-class="{true:'active', false:'inactive'}[tab.isSelected(3)]" ng-click="tab.setSelected(3)">
+                    Currency Cotization</a></li>
+            </ul>
+        </section>
 
-	
-	
-	
-        </form>
+
+        <div class="clearfix"></div>
+
+        <div id="movementController" ng-show="tab.isSelected(1)" ng-controller="MovementController as mov">
+
+            <h3>{{mov.title}}</h3>
+
+            <form name="addMovement" class="form" ng-submit="mov.addNewMovement(addMovement.$valid)">
+
+                <h5>Origin Account</h5>
+                <select id="accountsdest" class="form-control pull-right" ng-model="mov.accountdest"
+                        ng-options="accountdest.name for accountdest in mov.accountsdest"
+                        ng-change="mov.isFormValid()"></select>
+
+                <h5>Destination Account</h5>
+                <select id="accountsorig" class="form-control pull-right" ng-model="mov.accountorig"
+                        ng-options="accountorig.name for accountorig in mov.accountsorig"
+                        ng-change="mov.isFormValid()"></select>
+
+                <h5>Category</h5>
+                <select id="category" class="form-control pull-right" ng-model="mov.category"
+                        ng-options="category.name for category in mov.categories"></select>
+
+                <select id="reason" class="form-control pull-right" ng-model="mov.reason"
+                        ng-options="reason.name for reason in mov.reasons"></select>
+
+
+                <h5>Amount</h5>
+                <input type="number" min="0" class="form-control-short-amount" value="0" ng-model="mov.amount"
+                       ng-change="mov.isFormValid()" required/>
+                <select id="currencies" class="form-control-short" ng-model="mov.currency"
+                        ng-options="currency.symbol for currency in mov.currencies"></select>
+                <input type="checkbox" ng-click="mov.updateDate($event, e.id)" ng-model="mov.actualDate"
+                       ng-change="mov.isFormValid()"> Use actual date
+                <input id="date" ng-hide="mov.actualDate" name="date" type="date" ng-model="mov.date"
+                       placeholder="MM-dd-yyyy" ng-change="mov.isFormValid()"/>
+                <h5>Comment</h5>
+                ​<textarea id="txtArea" class="form-control-comment" ng-model="mov.comment" required
+                           ng-change="mov.isFormValid()"></textarea>
+
+                <button class="btn btn-info pull-right" ng-class="{true:'btn-success', false:'btn-info'}[mov.isValid]">
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add
+                </button>
+
+
+            </form>
+        </div>
+
+
+        <div ng-show="tab.isSelected(2)">
+            Report
+        </div>
+        <div ng-show="tab.isSelected(3)">
+            Currency Cotization
+        </div>
+
     </div>
 </div>
-<div id="footer" class=".page-footer"></div>
+
+<div id="footer" class="page-footer"></div>
 </body>
 </html>
+
+
+<!--
+<div class="input-group">
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-search"></span>
+    </span>
+    <input type="text" class="form-control" ng-model="main.searchInput">
+</div>
+<h3>A list of TV shows</h3>
+<ul class="list-group">
+    <li class="list-group-item"
+        ng-repeat="show in main.shows | filter:main.searchInput | orderBy:main.order.key:main.order.reverse"><span
+            class="glyphicon glyphicon-star" ng-if="show.favorite"></span> {{show.title}} <span class="badge">{{show.year}}</span>
+    </li>
+</ul>
+
+-->
+<!--
+<div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" ng-model="main.new.title" required/>
+</div>
+<div class="form-group">
+    <label>Year</label>
+    <input type="number" min="1900" max="2030" class="form-control" ng-model="main.new.year" required/>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <label>Favorite: <input type="checkbox" ng-model="main.new.favorite"/></label>
+    </div>
+    <div class="col-xs-6">
+        <button class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add
+        </button>
+    </div>
+</div>
+-->

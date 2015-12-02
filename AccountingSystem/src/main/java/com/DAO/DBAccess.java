@@ -3,8 +3,9 @@ package com.DAO;
 import com.DAO.DBAccessObjects.DBAccessAccount;
 import com.DAO.DBAccessObjects.DBAccessCurrency;
 import com.DAO.DBAccessObjects.DBAccessMovement;
-import com.DAO.DBAccessObjects.DBAccessReason;
+import com.DAO.DBAccessObjects.DBAccessCategory;
 import com.domain.DBObject;
+import com.util.CoreException;
 import com.util.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -28,8 +29,8 @@ public class DBAccess {
         session.close();
     }
 
-
-    public static void saveObject(DBObject object) {
+    //Just for HibernateTest
+    public static void saveObject(DBObject object) throws CoreException {
 
         try {
             logger.info("Saving: " + object.getClass().getSimpleName() + " " + object);
@@ -41,20 +42,25 @@ public class DBAccess {
             logger.info("Successfully Saved: " + object.getClass().getSimpleName() + " " + object);
         } catch (Exception e) {
             logger.error("Error Saving: " + object.getClass().getSimpleName() + " " + object + ". Exception:" + e);
+            //throw new CoreException("Error Saving: " + object.getClass().getSimpleName() + " " + object + ". Exception:" + e);
         }
     }
 
-    public static DBObject loadObject(DBObject object) {
+    //Just for HibernateTest
+    public static DBObject loadObject(DBObject object) throws CoreException {
         logger.info("Loading: " + object.getClass().getSimpleName() + " " + object);
-
-        Session session = getSession();
-        DBObject returnObject = (DBObject) session.get(object.getClass(), object.getId());
-        closeSession(session);
-
-        return returnObject;
+        try {
+            Session session = getSession();
+            DBObject returnObject = (DBObject) session.get(object.getClass(), object.getId());
+            closeSession(session);
+            return returnObject;
+        } catch (Exception e) {
+            logger.error("Error Loading: " + object.getClass().getSimpleName() + " " + object + ". Exception:" + e);
+            throw new CoreException("Error Loading: " + object.getClass().getSimpleName() + " " + object + ". Exception:" + e);
+        }
     }
 
-    public static List<Object> loadEveryRow(Class<?> object) {
+    public static List<Object> loadEveryRow(Class<?> object) throws CoreException {
         List<Object> list = null;
         try {
             logger.info("Loading: " + object.getSimpleName());
@@ -63,28 +69,28 @@ public class DBAccess {
             Criteria cr = session.createCriteria(object);
             list = cr.list();
             closeSession(session);
-            logger.info("Successfully Loaded: " + object.getClass().getSimpleName() + ". Row count: " + list.size());
-
+            logger.info("Successfully Loaded: " + object.getSimpleName() + ". Row count: " + list.size());
+            return list;
         } catch (Exception e) {
-            logger.error("Error Loading: " + object.getSimpleName() + " " + object + ". Exception:" + e);
+            logger.error("Error Loading Table: " + object.getSimpleName() + " " + object + ". Exception:" + e);
+            throw new CoreException("Error Loading Table: " + object.getSimpleName() + " " + object + ". Exception:" + e);
         }
-        return list;
     }
 
 
-    public static DBAccessAccount getDBAccessAccount(){
+    public static DBAccessAccount getDBAccessAccount() {
         return DBAccessAccount.getInstance();
     }
 
-    public static DBAccessMovement getDBAccessMovement(){
+    public static DBAccessMovement getDBAccessMovement() {
         return DBAccessMovement.getInstance();
     }
 
-    public static DBAccessReason getDBAccessReason(){
-        return DBAccessReason.getInstance();
+    public static DBAccessCategory getDBAccessCategory() {
+        return DBAccessCategory.getInstance();
     }
 
-    public static DBAccessCurrency getDBAccessCurrency(){
+    public static DBAccessCurrency getDBAccessCurrency() {
         return DBAccessCurrency.getInstance();
     }
 }

@@ -1,17 +1,21 @@
 app.controller("MainController",function($q,$http,$scope){
-
-
-
-    var vm = this;
+    
+	var vm = this;
     vm.title = 'Accounting System'
 
+	var vm = this;
+    vm.title = 'Accounting System';
+
+    vm.tab=1;
+
+
+	/*
     vm.new = {};
     vm.addShow = function() {
         vm.shows.push(vm.new);
         vm.new = {};
     };
-
-
+	
 vm.searchInput = '';
 
  vm.shows = [
@@ -41,6 +45,6 @@ vm.searchInput = '';
             favorite: false
         }
     ];
-
+*/
 });
 

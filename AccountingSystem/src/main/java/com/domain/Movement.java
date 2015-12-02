@@ -1,5 +1,8 @@
 package com.domain;
 
+import com.DAO.DBAccess;
+import com.util.CoreException;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +18,7 @@ public class Movement implements DBObject {
 
     @ManyToOne
     private Account origAccount;
+
     @ManyToOne
     private Account destAccount;
 
@@ -26,21 +30,24 @@ public class Movement implements DBObject {
     private Date movementDate;
 
     @ManyToOne
-    private Reason reason;
+    private Category category;
 
     private String comment;
 
-    public Movement(Account origAccount, Account destAccount, Long amount, Date movementDate, Reason reason, Currency currency, String comment) {
+    private MovementStatus status;
+
+    public Movement() {
+    }
+
+    public Movement(Account origAccount, Account destAccount, Long amount, Date movementDate, Category category, Currency currency, String comment) {
         this.origAccount = origAccount;
         this.destAccount = destAccount;
         this.amount = amount;
         this.movementDate = movementDate;
-        this.reason = reason;
+        this.category = category;
         this.currency = currency;
         this.comment = comment;
-    }
-
-    public Movement() {
+        this.status = MovementStatus.EXECUTED;
     }
 
     public String hasMissingParameters() {
@@ -57,21 +64,41 @@ public class Movement implements DBObject {
             attrMissing += " Currency.";
         if (this.movementDate == null)
             attrMissing += " Date.";
-        if (this.reason == null)
-            attrMissing += " Reason.";
+        if (this.category == null)
+            attrMissing += " Category.";
         if (this.comment == null)
             attrMissing += " Comment.";
 
         if (!attrMissing.isEmpty())
-            attrMissing= "Missing Properties for Movement: " + attrMissing;
+            attrMissing = "Missing Properties for Movement: " + attrMissing;
 
         return attrMissing;
     }
 
-    @Override
-    public String toString() {
-        return "Movement [id=" + id + ", from=" + origAccount.getName() + ", to="
-                + destAccount.getName() + ", amount=" + amount + "]";
+    public void process() throws CoreException {
+
+        Long sadder = this.destAccount.getSadder();
+        Long newSadder=this.destAccount.getSadder() - this.amount;
+        AccountSadder originAccountSadder = new AccountSadder(this, origAccount, sadder, newSadder, this.getStatus());
+        sadder = this.origAccount.getSadder();
+        newSadder=this.origAccount.getSadder() + this.amount;
+        AccountSadder destAccountSadder = new AccountSadder(this, destAccount, sadder, newSadder, this.getStatus());
+
+        DBAccess.getDBAccessMovement().saveMovement(this,originAccountSadder,destAccountSadder);
+
+    }
+
+    public void revert() throws CoreException {
+
+        Long sadder = this.destAccount.getSadder();
+        Long newSadder=this.destAccount.getSadder() + this.amount;
+        AccountSadder originAccountSadder = new AccountSadder(this, origAccount, sadder, newSadder, this.getStatus());
+        sadder = this.origAccount.getSadder();
+        newSadder=this.origAccount.getSadder() - this.amount;
+        AccountSadder destAccountSadder = new AccountSadder(this, destAccount, sadder, newSadder, this.getStatus());
+
+        DBAccess.getDBAccessMovement().saveMovement(this,originAccountSadder,destAccountSadder);
+
     }
 
 
@@ -116,12 +143,12 @@ public class Movement implements DBObject {
         this.movementDate = movementDate;
     }
 
-    public Reason getReason() {
-        return reason;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setReason(Reason reason) {
-        this.reason = reason;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Currency getCurrency() {
@@ -139,4 +166,29 @@ public class Movement implements DBObject {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public MovementStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(MovementStatus status) {
+        this.status = status;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Movement{" +
+                "id=" + id +
+                ", origAccount=" + origAccount +
+                ", destAccount=" + destAccount +
+                ", amount=" + amount +
+                ", currency=" + currency +
+                ", movementDate=" + movementDate +
+                ", category=" + category +
+                ", comment='" + comment + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
 }

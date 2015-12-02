@@ -1,11 +1,15 @@
 package com.domain;
 
+import com.DAO.DBAccessObjects.DBAccessAccountSadder;
+import com.util.CoreException;
+
 import javax.persistence.*;
 import java.util.Date;
+
 @Entity
 @Table(name = "account")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Account implements DBObject {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Account implements DBObject {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @SequenceGenerator(name = "ACCOUNT_SEQ", sequenceName = "ACCOUNT_SEQ", allocationSize = 1)
@@ -13,17 +17,15 @@ public abstract class Account implements DBObject {
 
     private String name;
 
-    private Long sadder;
     @ManyToOne
     private Currency currency;
 
     private Date startDate;
     private Date endDate;
 
-    protected Account(String name, Long sadder, Currency currency, Date startDate,Date endDate) {
+    public Account(String name, Currency currency, Date startDate, Date endDate) {
         this.id = id;
         this.name = name;
-        this.sadder = sadder;
         this.currency = currency;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -32,13 +34,9 @@ public abstract class Account implements DBObject {
     public Account() {
     }
 
-
-    public void extract(Long amount){
-        this.sadder=this.sadder-amount;
-    }
-
-    public void deposit(Long amount){
-        this.sadder=this.sadder+amount;
+    @Transient
+    public Long getSadder() throws CoreException {
+        return DBAccessAccountSadder.getInstance().obtainAccountSadder(this);
     }
 
     public Long getId() {
@@ -47,14 +45,6 @@ public abstract class Account implements DBObject {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getSadder() {
-        return sadder;
-    }
-
-    public void setSadder(Long sadder) {
-        this.sadder = sadder;
     }
 
     public Currency getCurrency() {
@@ -87,5 +77,16 @@ public abstract class Account implements DBObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "currency=" + currency +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
     }
 }

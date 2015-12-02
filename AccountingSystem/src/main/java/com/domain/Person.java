@@ -9,19 +9,27 @@ import javax.persistence.*;
  * Created by x217204 on 11/17/2015.
  */
 @Entity
-@PrimaryKeyJoinColumn(name="id")
-@Table(name = "person",uniqueConstraints = {@UniqueConstraint(columnNames={"currency_id"})})
+@PrimaryKeyJoinColumn(name = "id")
+@Table(name = "person", uniqueConstraints = {@UniqueConstraint(columnNames = {"currency_id"})})
 public class Person extends Account {
 
-private String phoneNumber;
+    private String phoneNumber;
 
+    public Person() {
+    }
 
-    public Person(String name, Long sadder, Currency currency, Date startDate,Date endDate, String nombre, String phoneNumber) {
-        super( name, sadder, currency, startDate,endDate);
+    public Person(String name, Currency currency, Date startDate, Date endDate, String nombre, String phoneNumber) {
+        super(name, currency, startDate, endDate);
         this.phoneNumber = phoneNumber;
     }
 
-    public Person() {
-
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
 }

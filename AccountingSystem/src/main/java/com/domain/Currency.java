@@ -16,15 +16,15 @@ public class Currency implements DBObject {
 
     private String name;
     private String symbol;
-    private long precio;
+    private long price;
 
     public Currency() {
     }
 
-    public Currency(String name, String symbol, long precio) {
+    public Currency(String name, String symbol, long price) {
         this.name = name;
         this.symbol = symbol;
-        this.precio = precio;
+        this.price = price;
     }
 
     @Override
@@ -52,11 +52,21 @@ public class Currency implements DBObject {
         this.symbol = symbol;
     }
 
-    public long getPrecio() {
-        return precio;
+    public long getPrice() {
+        return price;
     }
 
-    public void setPrecio(long precio) {
-        this.precio = precio;
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", symbol='" + symbol + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

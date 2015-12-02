@@ -3,6 +3,7 @@ package com.DAO.DBAccessObjects;
 import com.DAO.DBAccess;
 import com.domain.Currency;
 import com.domain.DBObject;
+import com.util.CoreException;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
@@ -15,24 +16,28 @@ public class DBAccessCurrency implements DBAccessObject {
 
     private static DBAccessCurrency dbAccessCurrencyInstance = null;
 
-    public static DBAccessCurrency getInstance(){
-        if (dbAccessCurrencyInstance  == null){
-            dbAccessCurrencyInstance  =new DBAccessCurrency();
+    public static DBAccessCurrency getInstance() {
+        if (dbAccessCurrencyInstance == null) {
+            dbAccessCurrencyInstance = new DBAccessCurrency();
         }
         return dbAccessCurrencyInstance;
     }
 
     @Override
-    public DBObject getObjectById(long id) {
+    public DBObject getObjectById(long id) throws CoreException {
+        try {
+            logger.info("Loading: Currency: " + id);
 
-        logger.info("Loading: Currency: "+ id);
+            Session session = DBAccess.getSession();
+            DBObject returnObject = (DBObject) session.get(Currency.class, id);
+            DBAccess.closeSession(session);
+            logger.info("Successfully Loaded: Currency: " + returnObject);
 
-        Session session = DBAccess.getSession();
-        DBObject returnObject = (DBObject) session.get(Currency.class, id);
-        DBAccess.closeSession(session);
-        logger.info("Successfully Loaded: Currency: "+ returnObject);
-
-        return (Currency) returnObject;
+            return (Currency) returnObject;
+        } catch (Exception e) {
+            logger.error("Error Loading Currency: " + id + ". Exception:" + e);
+            throw new CoreException("Error Loading Currency: " + id + ". Exception:" + e);
+        }
     }
 
 }
