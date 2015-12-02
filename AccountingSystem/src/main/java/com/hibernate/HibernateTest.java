@@ -11,43 +11,95 @@ public class HibernateTest {
     private static Logger logger = Logger.getLogger(HibernateTest.class);
     public static void main(String[] args) throws Exception {
 
-        Currency peso=new Currency("peso","$",1);
-        Currency dolar=new Currency("dolar","u$d",15);
-        DBAccess.saveObject(peso);
-        DBAccess.saveObject(dolar);
+        Currency peso;
+        Currency dolar;
+        try {
+            peso = new Currency("peso", "$", 1);
+            dolar = new Currency("dolar", "u$d", 15);
+            DBAccess.getDBAccessObject(Currency.class).saveObject(peso);
+            DBAccess.getDBAccessObject(Currency.class).saveObject(dolar);
+        }catch (Exception e){
+            peso = (Currency) DBAccess.getDBAccessObject(Currency.class).getObjectById(1);
+            dolar = (Currency) DBAccess.getDBAccessObject(Currency.class).getObjectById(2);
+        }
+
+        System.out.println(peso);
+        System.out.println(dolar);
 
 
-        BankAccount bankAccount1=new BankAccount("Cordoba Debito",peso,"Debito",new Date("17/11/2015"),null,"Banco de Córdoba","11110002223334445566");
-        BankAccount bankAccount2=new BankAccount("Frances Debito",peso,"Debito",new Date("17/11/2015"),null,"Banco Frances","11110002223334445566");
-        BankAccount bankAccount3=new BankAccount("Frances Credito",peso,"Credito",new Date("17/11/2015"),null,"Banco Frances","11110002223334445566");
-        BankAccount bankAccount4=new BankAccount("Santander Debito",peso,"Debito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
-        BankAccount bankAccount5=new BankAccount("Santander Debito",dolar,"Debito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
-        BankAccount bankAccount6=new BankAccount("Santander Credito Visa",peso,"Credito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
-        BankAccount bankAccount7=new BankAccount("Santander Credito Amex",peso,"Credito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
 
-        /*
-        BankAccount bankAccount1=new BankAccount("Cordoba Debito",new Long(1000),"$","Debito",new Date("17/11/2015"),null,"Banco de Córdoba","11110002223334445566");
-        BankAccount bankAccount2=new BankAccount("Frances Debito",new Long(900),"$","Debito",new Date("17/11/2015"),null,"Banco Frances","11110002223334445566");
-        BankAccount bankAccount3=new BankAccount("Frances Credito",new Long(800),"$","Credito",new Date("17/11/2015"),null,"Banco Frances","11110002223334445566");
-        BankAccount bankAccount4=new BankAccount("Santander Debito",new Long(700),"$","Debito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
-        BankAccount bankAccount5=new BankAccount("Santander Debito",new Long(600),"u$d","Debito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
-        BankAccount bankAccount6=new BankAccount("Santander Credito Visa",new Long(500),"$","Credito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
-        BankAccount bankAccount7=new BankAccount("Santander Credito Amex",new Long(400),"$","Credito",new Date("17/11/2015"),null,"Santander Rio","11110002223334445566");
-        */
-        DBAccess.saveObject(bankAccount1);
-        DBAccess.saveObject(bankAccount2);
-        DBAccess.saveObject(bankAccount3);
-        DBAccess.saveObject(bankAccount4);
-        DBAccess.saveObject(bankAccount5);
-        DBAccess.saveObject(bankAccount6);
-        DBAccess.saveObject(bankAccount7);
 
-        Person person1=new Person("Osvaldo",dolar,new Date("17/11/2015"),null,"Osvaldo Samuel Semrik","3513313182");
-        Person person2=new Person("Matìas",peso,new Date("17/11/2015"),null,"Matías Semrik","3513313182");
-       /*
+        BankAccount bankAccount1;
+        BankAccount bankAccount2;
+        BankAccount bankAccount3;
+        BankAccount bankAccount4;
+        BankAccount bankAccount5;
+        BankAccount bankAccount6;
+        BankAccount bankAccount7;
+        try {
+            bankAccount1 = new BankAccount("Cordoba Debito", peso, "Debito", new Date("17/11/2015"), null, "Banco de Córdoba", "11110002223334445566");
+            bankAccount2 = new BankAccount("Frances Debito", peso, "Debito", new Date("17/11/2015"), null, "Banco Frances", "11110002223334445566");
+            bankAccount3 = new BankAccount("Frances Credito", peso, "Credito", new Date("17/11/2015"), null, "Banco Frances", "11110002223334445566");
+            bankAccount4 = new BankAccount("Santander Debito", peso, "Debito", new Date("17/11/2015"), null, "Santander Rio", "11110002223334445566");
+            bankAccount5 = new BankAccount("Santander Debito", dolar, "Debito", new Date("17/11/2015"), null, "Santander Rio", "11110002223334445566");
+            bankAccount6 = new BankAccount("Santander Credito Visa", peso, "Credito", new Date("17/11/2015"), null, "Santander Rio", "11110002223334445566");
+            bankAccount7 = new BankAccount("Santander Credito Amex", peso, "Credito", new Date("17/11/2015"), null, "Santander Rio", "11110002223334445566");
+
+            DBAccess.getDBAccessObject(Account.class).saveObject(bankAccount1);
+            DBAccess.getDBAccessObject(Account.class).saveObject(bankAccount2);
+            DBAccess.getDBAccessObject(Account.class).saveObject(bankAccount3);
+            DBAccess.getDBAccessObject(Account.class).saveObject(bankAccount4);
+            DBAccess.getDBAccessObject(Account.class).saveObject(bankAccount5);
+            DBAccess.getDBAccessObject(Account.class).saveObject(bankAccount6);
+            DBAccess.getDBAccessObject(Account.class).saveObject(bankAccount7);
+        } catch(Exception e){
+            bankAccount1 = (BankAccount) DBAccess.getDBAccessObject(Account.class).getObjectById(1);
+            bankAccount2 = (BankAccount) DBAccess.getDBAccessObject(Account.class).getObjectById(2);
+            bankAccount3 = (BankAccount) DBAccess.getDBAccessObject(Account.class).getObjectById(3);
+            bankAccount4 = (BankAccount) DBAccess.getDBAccessObject(Account.class).getObjectById(4);
+            bankAccount5 = (BankAccount) DBAccess.getDBAccessObject(Account.class).getObjectById(5);
+            bankAccount6 = (BankAccount) DBAccess.getDBAccessObject(Account.class).getObjectById(6);
+            bankAccount7 = (BankAccount) DBAccess.getDBAccessObject(Account.class).getObjectById(7);
+
+
+        }
+
+        System.out.println(bankAccount1);
+        System.out.println(bankAccount2);
+        System.out.println(bankAccount3);
+        System.out.println(bankAccount4);
+        System.out.println(bankAccount5);
+        System.out.println(bankAccount6);
+        System.out.println(bankAccount7);
+
+
+
+
+        Person person1;
+        Person person2;
+
+        try {
+            person1=new Person("Osvaldo",dolar,new Date("17/11/2015"),null,"Osvaldo Samuel Semrik","3513313182");
+            person2=new Person("Matìas",peso,new Date("17/11/2015"),null,"Matías Semrik","3513313182");bankAccount3 = new BankAccount("Frances Credito", peso, "Credito", new Date("17/11/2015"), null, "Banco Frances", "11110002223334445566");
+            DBAccess.getDBAccessObject(Account.class).saveObject(person1);
+            DBAccess.getDBAccessObject(Account.class).saveObject(person2);
+        } catch(Exception e){
+            person1 = (Person) DBAccess.getDBAccessObject(Account.class).getObjectById(1);
+            person2 = (Person) DBAccess.getDBAccessObject(Account.class).getObjectById(2);
+         }
+
+        System.out.println(person1);
+        System.out.println(person2);
+
+
+
+       /*NO USAR
         Person person1=new Person("Osvaldo",(long)1500,"u$d",new Date("17/11/2015"),null,"Osvaldo Samuel Semrik","3513313182");
         Person person2=new Person("Matìas",(long)700,"$",new Date("17/11/2015"),null,"Matías Semrik","3513313182");
         */
+
+
+        /*
         DBAccess.saveObject(person1);
         DBAccess.saveObject(person2);
 
@@ -78,5 +130,8 @@ public class HibernateTest {
 
         Movement movement = new Movement(account,account2,(long)100,new Date(), category,peso,"test comment");
         DBAccess.saveObject(movement);
+
+
+        */
     }
 }

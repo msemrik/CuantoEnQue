@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by M-Sem on 28/11/2015.
  */
 @Entity
-@Table(name = "currency",uniqueConstraints = {@UniqueConstraint(columnNames={"name"})})
+@Table(name = "currency", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
 public class Currency implements DBObject {
 
     @Id

@@ -10,7 +10,7 @@ import org.hibernate.Session;
 /**
  * Created by M-Sem on 28/11/2015.
  */
-public class DBAccessCategory implements DBAccessObject {
+public class DBAccessCategory extends DBAccessObject {
 
     final static Logger logger = Logger.getLogger(DBAccessCategory.class);
 

@@ -16,36 +16,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
 public class MainController {
-
+/*
     @RequestMapping(value = "/getCategories", method = RequestMethod.GET)
     @ResponseBody
     public List<Object> getCategories() throws CoreException {
         return DBAccess.loadEveryRow(Category.class);
-
     }
 
     @RequestMapping(value = "/getAccounts", method = RequestMethod.GET)
     @ResponseBody
     public List<Object> getAccounts() throws CoreException {
         return DBAccess.loadEveryRow(Account.class);
-
     }
 
     @RequestMapping(value = "/getCurrencies", method = RequestMethod.GET)
     @ResponseBody
     public List<Object> getCurrencies() throws CoreException {
         return DBAccess.loadEveryRow(Currency.class);
-
     }
 
     @RequestMapping(value = "/getMovements", method = RequestMethod.GET)
     @ResponseBody
     public List<Object> getMovements() throws CoreException {
         return DBAccess.loadEveryRow(Movement.class);
-
     }
 
     @RequestMapping(value = "/createMovement", method = RequestMethod.PUT)
@@ -69,5 +64,5 @@ public class MainController {
         String jsonInString = mapper.writeValueAsString(responseEntity);
         return jsonInString;
     }
-
+*/
 }

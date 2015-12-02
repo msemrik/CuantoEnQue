@@ -32,21 +32,21 @@ public class Movement implements DBObject {
     @ManyToOne
     private Category category;
 
-    private String comment;
+    private String commentary;
 
     private MovementStatus status;
 
     public Movement() {
     }
 
-    public Movement(Account origAccount, Account destAccount, Long amount, Date movementDate, Category category, Currency currency, String comment) {
+    public Movement(Account origAccount, Account destAccount, Long amount, Date movementDate, Category category, Currency currency, String commentary) {
         this.origAccount = origAccount;
         this.destAccount = destAccount;
         this.amount = amount;
         this.movementDate = movementDate;
         this.category = category;
         this.currency = currency;
-        this.comment = comment;
+        this.commentary = commentary;
         this.status = MovementStatus.EXECUTED;
     }
 
@@ -66,7 +66,7 @@ public class Movement implements DBObject {
             attrMissing += " Date.";
         if (this.category == null)
             attrMissing += " Category.";
-        if (this.comment == null)
+        if (this.commentary == null)
             attrMissing += " Comment.";
 
         if (!attrMissing.isEmpty())
@@ -74,33 +74,6 @@ public class Movement implements DBObject {
 
         return attrMissing;
     }
-
-    public void process() throws CoreException {
-
-        Long sadder = this.destAccount.getSadder();
-        Long newSadder=this.destAccount.getSadder() - this.amount;
-        AccountSadder originAccountSadder = new AccountSadder(this, origAccount, sadder, newSadder, this.getStatus());
-        sadder = this.origAccount.getSadder();
-        newSadder=this.origAccount.getSadder() + this.amount;
-        AccountSadder destAccountSadder = new AccountSadder(this, destAccount, sadder, newSadder, this.getStatus());
-
-        DBAccess.getDBAccessMovement().saveMovement(this,originAccountSadder,destAccountSadder);
-
-    }
-
-    public void revert() throws CoreException {
-
-        Long sadder = this.destAccount.getSadder();
-        Long newSadder=this.destAccount.getSadder() + this.amount;
-        AccountSadder originAccountSadder = new AccountSadder(this, origAccount, sadder, newSadder, this.getStatus());
-        sadder = this.origAccount.getSadder();
-        newSadder=this.origAccount.getSadder() - this.amount;
-        AccountSadder destAccountSadder = new AccountSadder(this, destAccount, sadder, newSadder, this.getStatus());
-
-        DBAccess.getDBAccessMovement().saveMovement(this,originAccountSadder,destAccountSadder);
-
-    }
-
 
     @Override
     public Long getId() {
@@ -159,12 +132,12 @@ public class Movement implements DBObject {
         this.currency = currency;
     }
 
-    public String getComment() {
-        return comment;
+    public String getCommentary() {
+        return commentary;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommentary(String commentary) {
+        this.commentary = commentary;
     }
 
     public MovementStatus getStatus() {
@@ -186,7 +159,7 @@ public class Movement implements DBObject {
                 ", currency=" + currency +
                 ", movementDate=" + movementDate +
                 ", category=" + category +
-                ", comment='" + comment + '\'' +
+                ", commentary='" + commentary + '\'' +
                 ", status=" + status +
                 '}';
     }

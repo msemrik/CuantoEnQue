@@ -1,10 +1,7 @@
 package com.DAO;
 
-import com.DAO.DBAccessObjects.DBAccessAccount;
-import com.DAO.DBAccessObjects.DBAccessCurrency;
-import com.DAO.DBAccessObjects.DBAccessMovement;
-import com.DAO.DBAccessObjects.DBAccessCategory;
-import com.domain.DBObject;
+import com.DAO.DBAccessObjects.*;
+import com.domain.*;
 import com.util.CoreException;
 import com.util.HibernateUtil;
 import org.apache.log4j.Logger;
@@ -17,7 +14,7 @@ import java.util.List;
 /**
  * Created by x217204 on 11/17/2015.
  */
-public class DBAccess {
+public final class DBAccess {
 
     final static Logger logger = Logger.getLogger(DBAccess.class);
 
@@ -29,27 +26,60 @@ public class DBAccess {
         session.close();
     }
 
-    //Just for HibernateTest
-    public static void saveObject(DBObject object) throws CoreException {
+    private DBAccess(){};
 
+
+    public static  DBAccessObject getDBAccessObject(Class<?> classType){
+
+        if (classType == Account.class)
+            return DBAccessAccount.getInstance();
+        if (classType == Movement.class)
+            return DBAccessMovement.getInstance();
+        if (classType ==Category.class)
+            return DBAccessCategory.getInstance();
+        if (classType == Currency.class)
+            return DBAccessCurrency.getInstance();
+        if (classType == AccountSadder.class)
+            return DBAccessAccountSadder.getInstance();
+        if (classType ==Detail.class)
+            return DBAccessDetail.getInstance();
+
+        return null;
+    }
+
+
+
+    public static DBAccessObject getDBAccessObject(DBObject dbAccessObject) {
+        if (dbAccessObject instanceof Account)
+            return DBAccessAccount.getInstance();
+        if (dbAccessObject instanceof Movement)
+            return DBAccessMovement.getInstance();
+        if (dbAccessObject instanceof Category)
+            return DBAccessCategory.getInstance();
+        if (dbAccessObject instanceof Currency)
+            return DBAccessCurrency.getInstance();
+        if (dbAccessObject instanceof AccountSadder)
+            return DBAccessAccountSadder.getInstance();
+        if (dbAccessObject instanceof Detail)
+            return DBAccessDetail.getInstance();
+
+        return null;
+    }
+    /*
+    public static void saveObject(DBObject object) throws CoreException {
+        DBAccessObject dbAccessObject = getDBAccessObject(object);
         try {
-            logger.info("Saving: " + object.getClass().getSimpleName() + " " + object);
-            Session session = getSession();
-            session.getTransaction().begin();
-            session.save(object);
-            session.getTransaction().commit();
-            closeSession(session);
-            logger.info("Successfully Saved: " + object.getClass().getSimpleName() + " " + object);
+            dbAccessObject.saveObject(object);
         } catch (Exception e) {
-            logger.error("Error Saving: " + object.getClass().getSimpleName() + " " + object + ". Exception:" + e);
-            //throw new CoreException("Error Saving: " + object.getClass().getSimpleName() + " " + object + ". Exception:" + e);
+            throw new CoreException("Error Saving: " + object.getClass().getSimpleName() + " " + object + ". Exception:" + e);
         }
     }
 
-    //Just for HibernateTest
+
     public static DBObject loadObject(DBObject object) throws CoreException {
-        logger.info("Loading: " + object.getClass().getSimpleName() + " " + object);
-        try {
+        DBAccessObject dbAccessObject = getDBAccessObject(object);
+       try {
+            logger.info("Loading: " + object.getClass().getSimpleName() + " " + object);
             Session session = getSession();
             DBObject returnObject = (DBObject) session.get(object.getClass(), object.getId());
             closeSession(session);
@@ -76,21 +106,5 @@ public class DBAccess {
             throw new CoreException("Error Loading Table: " + object.getSimpleName() + " " + object + ". Exception:" + e);
         }
     }
-
-
-    public static DBAccessAccount getDBAccessAccount() {
-        return DBAccessAccount.getInstance();
-    }
-
-    public static DBAccessMovement getDBAccessMovement() {
-        return DBAccessMovement.getInstance();
-    }
-
-    public static DBAccessCategory getDBAccessCategory() {
-        return DBAccessCategory.getInstance();
-    }
-
-    public static DBAccessCurrency getDBAccessCurrency() {
-        return DBAccessCurrency.getInstance();
-    }
+*/
 }

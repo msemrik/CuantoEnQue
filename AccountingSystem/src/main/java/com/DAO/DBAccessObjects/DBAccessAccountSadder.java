@@ -13,7 +13,7 @@ import org.hibernate.criterion.Restrictions;
 /**
  * Created by M-Sem on 01/12/2015.
  */
-public class DBAccessAccountSadder implements DBAccessObject {
+public class DBAccessAccountSadder extends DBAccessObject {
 
     final static Logger logger = Logger.getLogger(DBAccessAccountSadder.class);
 
@@ -26,7 +26,6 @@ public class DBAccessAccountSadder implements DBAccessObject {
         return dbAccessAccountSadderInstance;
     }
 
-    @Override
     public DBObject getObjectById(long id) throws CoreException {
         try {
             logger.info("Loading: AccountSadder: " + id);
@@ -36,15 +35,30 @@ public class DBAccessAccountSadder implements DBAccessObject {
             DBAccess.closeSession(session);
             logger.info("Successfully Loaded: AccountSadder: " + returnObject);
 
-            return (Account) returnObject;
+            return (AccountSadder) returnObject;
         } catch (Exception e) {
             logger.error("Error Loading AccountSadder: " + id + ". Exception:" + e);
             throw new CoreException("Error Loading AccountSadder: " + id + ". Exception:" + e);
         }
     }
 
+    public void saveObject(DBObject dbObject) throws CoreException {
+        try {
+            logger.info("Saving: " + dbObject.getClass().getSimpleName() + " " + dbObject);
+            Session session = DBAccess.getSession();
+            session.getTransaction().begin();
+            session.save(dbObject);
+            session.getTransaction().commit();
+            DBAccess.closeSession(session);
+            logger.info("Successfully Saved: " + dbObject.getClass().getSimpleName() + " " + dbObject);
+        } catch (Exception e) {
+            logger.error("Error Saving: " + dbObject.getClass().getSimpleName() + " " + dbObject + ". Exception:" + e);
+            throw new CoreException("Error Saving: " + dbObject.getClass().getSimpleName() + " " + dbObject + ". Exception:" + e);
+        }
+    }
 
-    public Long obtainAccountSadder(Account account) throws CoreException {
+
+    public Long getAccountSadder(Account account) throws CoreException {
         try {
             logger.info("Loading: AccountSadder: " + account);
             Session session = DBAccess.getSession();

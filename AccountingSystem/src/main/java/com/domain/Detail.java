@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "detail")
-public class Detail implements  DBObject {
+public class Detail implements DBObject {
 
     @Id
     @GeneratedValue(generator = "DETAIL_SEQ")

@@ -3,8 +3,8 @@ package com.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category",uniqueConstraints = {@UniqueConstraint(columnNames={"name"})})
-public class Category implements DBObject{
+@Table(name = "category", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+public class Category implements DBObject {
 
     @Id
     @GeneratedValue(generator = "CATEGORY_SEQ")
@@ -35,8 +35,6 @@ public class Category implements DBObject{
     public void setName(String name) {
         this.name = name;
     }
-
-
 
 
 }

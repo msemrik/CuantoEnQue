@@ -1,5 +1,8 @@
 package com.domain;
 
+import com.util.AccountHelper;
+import com.util.CoreException;
+
 import javax.persistence.*;
 
 /**

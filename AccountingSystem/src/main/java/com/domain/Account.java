@@ -34,11 +34,6 @@ public class Account implements DBObject {
     public Account() {
     }
 
-    @Transient
-    public Long getSadder() throws CoreException {
-        return DBAccessAccountSadder.getInstance().obtainAccountSadder(this);
-    }
-
     public Long getId() {
         return id;
     }

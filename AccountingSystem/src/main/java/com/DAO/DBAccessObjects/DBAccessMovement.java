@@ -11,7 +11,7 @@ import org.hibernate.Session;
 /**
  * Created by M-Sem on 28/11/2015.
  */
-public class DBAccessMovement implements DBAccessObject {
+public class DBAccessMovement extends DBAccessObject {
 
     final static Logger logger = Logger.getLogger(DBAccessMovement.class);
 
