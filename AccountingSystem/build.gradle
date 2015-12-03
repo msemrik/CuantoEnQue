@@ -82,6 +82,7 @@ dependencies {
     compile('mysql:mysql-connector-java:5.1.9')
     compile('org.apache.logging.log4j:log4j:2.4.1')
     compile('org.json:json:20090211')
+    compile('com.google.guava:guava:r05')
 
     compile('javax.validation:validation-api:1.0.0.GA')
 

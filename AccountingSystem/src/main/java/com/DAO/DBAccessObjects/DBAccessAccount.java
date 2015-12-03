@@ -25,8 +25,6 @@ public class DBAccessAccount extends DBAccessObject {
         return dbAccessAccountInstance;
     }
 
-
-
     @Override
     public DBObject getObjectById(long id) throws CoreException {
         try{

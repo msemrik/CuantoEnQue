@@ -26,15 +26,14 @@ public class DBAccessAccountSadder extends DBAccessObject {
         return dbAccessAccountSadderInstance;
     }
 
+    @Override
     public DBObject getObjectById(long id) throws CoreException {
         try {
             logger.info("Loading: AccountSadder: " + id);
-
             Session session = DBAccess.getSession();
             DBObject returnObject = (DBObject) session.get(AccountSadder.class, id);
             DBAccess.closeSession(session);
             logger.info("Successfully Loaded: AccountSadder: " + returnObject);
-
             return (AccountSadder) returnObject;
         } catch (Exception e) {
             logger.error("Error Loading AccountSadder: " + id + ". Exception:" + e);
@@ -42,27 +41,10 @@ public class DBAccessAccountSadder extends DBAccessObject {
         }
     }
 
-    public void saveObject(DBObject dbObject) throws CoreException {
-        try {
-            logger.info("Saving: " + dbObject.getClass().getSimpleName() + " " + dbObject);
-            Session session = DBAccess.getSession();
-            session.getTransaction().begin();
-            session.save(dbObject);
-            session.getTransaction().commit();
-            DBAccess.closeSession(session);
-            logger.info("Successfully Saved: " + dbObject.getClass().getSimpleName() + " " + dbObject);
-        } catch (Exception e) {
-            logger.error("Error Saving: " + dbObject.getClass().getSimpleName() + " " + dbObject + ". Exception:" + e);
-            throw new CoreException("Error Saving: " + dbObject.getClass().getSimpleName() + " " + dbObject + ". Exception:" + e);
-        }
-    }
-
-
     public Long getAccountSadder(Account account) throws CoreException {
         try {
             logger.info("Loading: AccountSadder: " + account);
             Session session = DBAccess.getSession();
-
             AccountSadder accountSadder = (AccountSadder) session.createCriteria(AccountSadder.class)
                     .add(Restrictions.eq("account", account))
                     .addOrder(Order.desc("account"))

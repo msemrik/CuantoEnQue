@@ -27,12 +27,10 @@ public class DBAccessCategory extends DBAccessObject {
     public DBObject getObjectById(long id) throws CoreException {
         try {
             logger.info("Loading: Category: " + id);
-
             Session session = DBAccess.getSession();
             DBObject returnObject = (DBObject) session.get(Category.class, id);
             DBAccess.closeSession(session);
             logger.info("Successfully Loaded: Category: " + returnObject);
-
             return (Category) returnObject;
         } catch (Exception e) {
             logger.error("Error Loading Category: " + id + ". Exception:" + e);

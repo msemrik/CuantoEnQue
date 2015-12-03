@@ -9,7 +9,7 @@ import java.util.Date;
 public class HibernateTest {
 
     private static Logger logger = Logger.getLogger(HibernateTest.class);
-    public static void main(String[] args) throws Exception {
+    public static void maina(String[] args) throws Exception {
 
         Currency peso;
         Currency dolar;

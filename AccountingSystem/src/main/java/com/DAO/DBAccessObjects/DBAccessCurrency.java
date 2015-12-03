@@ -29,7 +29,6 @@ public class DBAccessCurrency extends DBAccessObject {
     public DBObject getObjectById(long id) throws CoreException {
         try {
             logger.info("Loading: Currency: " + id);
-
             Session session = DBAccess.getSession();
             DBObject returnObject = (DBObject) session.get(Currency.class, id);
             DBAccess.closeSession(session);

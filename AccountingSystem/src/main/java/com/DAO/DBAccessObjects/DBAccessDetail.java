@@ -19,24 +19,22 @@ public class DBAccessDetail extends DBAccessObject {
 
     private static DBAccessDetail dbAccessDetailInstance = null;
 
-    public static DBAccessDetail getInstance(){
-        if (dbAccessDetailInstance == null){
-            dbAccessDetailInstance=new DBAccessDetail();
+    public static DBAccessDetail getInstance() {
+        if (dbAccessDetailInstance == null) {
+            dbAccessDetailInstance = new DBAccessDetail();
         }
         return dbAccessDetailInstance;
     }
 
     @Override
     public DBObject getObjectById(long id) throws CoreException {
-        try{
-        logger.info("Loading: Detail: "+ id);
-
-        Session session = DBAccess.getSession();
-        DBObject returnObject = (DBObject) session.get(Detail.class, id);
-        DBAccess.closeSession(session);
-        logger.info("Successfully Loaded: Detail: "+ returnObject);
-
-        return (Account) returnObject;
+        try {
+            logger.info("Loading: Detail: " + id);
+            Session session = DBAccess.getSession();
+            DBObject returnObject = (DBObject) session.get(Detail.class, id);
+            DBAccess.closeSession(session);
+            logger.info("Successfully Loaded: Detail: " + returnObject);
+            return (Account) returnObject;
         } catch (Exception e) {
             logger.error("Error Loading Detail: " + id + ". Exception:" + e);
             throw new CoreException("Error Loading Detail: " + id + ". Exception:" + e);
