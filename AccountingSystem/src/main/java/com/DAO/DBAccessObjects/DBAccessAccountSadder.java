@@ -26,6 +26,10 @@ public class DBAccessAccountSadder extends DBAccessObject {
         return dbAccessAccountSadderInstance;
     }
 
+    private DBAccessAccountSadder (){
+        this.classObject = AccountSadder.class;
+    }
+
     @Override
     public DBObject getObjectById(long id) throws CoreException {
         try {
@@ -47,11 +51,11 @@ public class DBAccessAccountSadder extends DBAccessObject {
             Session session = DBAccess.getSession();
             AccountSadder accountSadder = (AccountSadder) session.createCriteria(AccountSadder.class)
                     .add(Restrictions.eq("account", account))
-                    .addOrder(Order.desc("account"))
+                    .addOrder(Order.desc("id"))
                     .setMaxResults(1)
                     .uniqueResult();
 
-            if (account == null) {
+            if (accountSadder == null) {
                 logger.info("Error, no Sadder for Account: " + account);
                 return Long.valueOf(0);
             }

@@ -3,10 +3,7 @@ package com.domain.VO;
 import com.DAO.DBAccessObjects.DBAccessAccount;
 import com.DAO.DBAccessObjects.DBAccessCurrency;
 import com.DAO.DBAccessObjects.DBAccessCategory;
-import com.domain.Account;
-import com.domain.Currency;
-import com.domain.Movement;
-import com.domain.Category;
+import com.domain.*;
 import com.util.CoreException;
 
 import java.util.Date;
@@ -21,19 +18,19 @@ public class MovementVO {
     private Long amount;
     private String currency;
     private Date movementDate;
-    private String reason;
+    private String detail;
     private String comment;
 
     public MovementVO() {
     }
 
-    public MovementVO(String origAccount, String destAccount, Long amount, String currency, Date movementDate, String reason, String comment) {
+    public MovementVO(String origAccount, String destAccount, Long amount, String currency, Date movementDate, String detail, String comment) {
         this.origAccount = origAccount;
         this.destAccount = destAccount;
         this.amount = amount;
         this.currency = currency;
         this.movementDate = movementDate;
-        this.reason = reason;
+        this.detail = detail;
         this.comment = comment;
     }
 
@@ -41,10 +38,10 @@ public class MovementVO {
 
         Account origAccount = (Account) DBAccessAccount.getInstance().getObjectById(Long.parseLong(this.origAccount));
         Account destAccount = (Account) DBAccessAccount.getInstance().getObjectById(Long.parseLong(this.destAccount));
-        Category category = (Category) DBAccessCategory.getInstance().getObjectById(Long.parseLong(this.reason));
+        Detail detail = (Detail) DBAccessCategory.getInstance().getObjectById(Long.parseLong(this.detail));
         Currency currency = (Currency) DBAccessCurrency.getInstance().getObjectById(Long.parseLong(this.currency));
 
-        return new Movement(origAccount,destAccount,amount,this.movementDate, category,currency,this.comment);
+        return new Movement(origAccount,destAccount,amount,this.movementDate, detail,currency,this.comment);
     }
 
     public String getOrigAccount() {
@@ -87,12 +84,12 @@ public class MovementVO {
         this.movementDate = movementDate;
     }
 
-    public String getReason() {
-        return reason;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setDetail(String reason) {
+        this.detail = reason;
     }
 
     public String getComment() {

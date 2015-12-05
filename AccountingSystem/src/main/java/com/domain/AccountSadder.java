@@ -32,12 +32,29 @@ public class AccountSadder implements DBObject {
     }
 
     public AccountSadder(Movement movement, Account account, Long sadderBeforeMovement, Long sadderAfterMovement, MovementStatus movementStatus) {
-        this.id = id;
         this.movement = movement;
         this.account = account;
         this.sadderBeforeMovement = sadderBeforeMovement;
         this.sadderAfterMovement = sadderAfterMovement;
         this.movementStatus = movementStatus;
+    }
+
+
+    public AccountSadder(Movement movement, Account account) throws CoreException {
+
+        this.movement = movement;
+        this.account = account;
+
+        this.sadderBeforeMovement = AccountHelper.obtainSadder(account);
+
+        int signChanger=1;
+        if (movement.getOrigAccount()== account)
+            signChanger=-1;
+
+        this.sadderAfterMovement = this.sadderBeforeMovement + (movement.getAmount() * signChanger);
+
+        this.movementStatus = movement.getStatus();
+
     }
 
     public Long getId() {

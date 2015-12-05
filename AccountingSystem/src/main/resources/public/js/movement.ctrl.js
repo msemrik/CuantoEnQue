@@ -1,4 +1,4 @@
-app.controller("MovementController",function($q,$http,$scope,$filter,alertsManager){
+app.controller("MovementController",function($q,$http,$scope,$filter,alertsManager, modalManager){
 
    var mv= this; 
    
@@ -30,6 +30,7 @@ app.controller("MovementController",function($q,$http,$scope,$filter,alertsManag
 
        return defer.promise;
    };
+
    mv.getCurrencies = function(){
        var temp = {};
        var defer = $q.defer();
@@ -43,24 +44,23 @@ app.controller("MovementController",function($q,$http,$scope,$filter,alertsManag
 
        return defer.promise;
    };
+
    mv.createMovement = function(originAccount, destAccount, amount, currency, date, reason, comment){
-       
 	   var temp = {};
        var defer = $q.defer();
 	   $scope.mostrarAlert=false;
 	   $http({method: 'PUT', url: 'http://localhost:8090/createMovement'
 			, data: JSON.stringify({"origAccount":originAccount,"destAccount":destAccount,"amount":amount,"currency":currency,"movementDate":date,"reason":reason,"comment":comment})})
-                          .success(function(data, status, headers, config) {
+                          .success(function(data, status) {
                               if(data.statusCode=="OK")
                                     $scope.mostrarAlert=true;
-                              defer.resolve(data);
                           }).error(function(data, status) {
                               defer.reject('ERROR');
                           });
        return defer.promise;
    };
+
    mv.initializeTab = function (){
-	
 	
     var categoriesPromise = mv.getCategories();
     categoriesPromise.then(function(resolve){
@@ -69,7 +69,6 @@ app.controller("MovementController",function($q,$http,$scope,$filter,alertsManag
 
                 }, function(reject){
                 });
-
 
     var accountPromise = mv.getAccounts();
     accountPromise.then(function(resolve){
@@ -91,12 +90,8 @@ app.controller("MovementController",function($q,$http,$scope,$filter,alertsManag
 				
 	mv.date = new Date();
 	mv.actualDate=true;
-	
 
-    mv.new = {};   
-   
-   mv.updateDate = function (event,id){
-	   
+   mv.updateDate = function (event){
 	   if(event.target.checked)
 	   {mv.date=new Date();
 		$("#date").removeAttr('required');
@@ -104,13 +99,14 @@ app.controller("MovementController",function($q,$http,$scope,$filter,alertsManag
 	   else {
 		   $("#date").attr('required', true);
 	   }
-	   
-	   
+
    };
 	};
+
    mv.addNewMovement = function(valid) {
 		if(true)
-            $scope.toggleModal({title:'Title',message:'Message',button:{text: 'close',function:'cerrar'}});
+            modalManager.showModal({title:'Title',message:'Message',button:{text: 'close',function:'cerrar'}});
+            //AlertsCtrl.toggleModal({title:'Title',message:'Message',button:{text: 'close',function:'cerrar'}});
 		if(!mv.isFormValid(true))
 			return ;
 		if(mv.actualDate){
@@ -128,13 +124,15 @@ app.controller("MovementController",function($q,$http,$scope,$filter,alertsManag
 								, function(reject){
 								object={Id:'movId', TypeOfMovement:'MovementController', Message:'Connection problem, please retry', Style: 'alert-error'};							
                                 })
-    };		
+    };
+
+
+
 	//initilize function
 	mv.initializeTab()	
 
 	mv.isValid=false;
 
-	
 	mv.isFormValid = function (showAlerts){
 		mv.isValid=true;
 		if(!$scope.addMovement.$valid)

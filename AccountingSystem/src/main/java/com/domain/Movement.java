@@ -1,6 +1,5 @@
 package com.domain;
 
-import com.DAO.DBAccess;
 import com.util.CoreException;
 
 import javax.persistence.*;
@@ -30,7 +29,7 @@ public class Movement implements DBObject {
     private Date movementDate;
 
     @ManyToOne
-    private Category category;
+    private Detail detail;
 
     private String commentary;
 
@@ -39,18 +38,18 @@ public class Movement implements DBObject {
     public Movement() {
     }
 
-    public Movement(Account origAccount, Account destAccount, Long amount, Date movementDate, Category category, Currency currency, String commentary) {
+    public Movement(Account origAccount, Account destAccount, Long amount, Date movementDate, Detail detail, Currency currency, String commentary) {
         this.origAccount = origAccount;
         this.destAccount = destAccount;
         this.amount = amount;
         this.movementDate = movementDate;
-        this.category = category;
+        this.detail = detail;
         this.currency = currency;
         this.commentary = commentary;
         this.status = MovementStatus.EXECUTED;
     }
 
-    public String hasMissingParameters() {
+    public String hasMissingParameters() throws CoreException {
 
         String attrMissing = "";
 
@@ -64,13 +63,13 @@ public class Movement implements DBObject {
             attrMissing += " Currency.";
         if (this.movementDate == null)
             attrMissing += " Date.";
-        if (this.category == null)
+        if (this.detail == null)
             attrMissing += " Category.";
         if (this.commentary == null)
             attrMissing += " Comment.";
 
         if (!attrMissing.isEmpty())
-            attrMissing = "Missing Properties for Movement: " + attrMissing;
+            throw new CoreException("Missing Properties for Movement: " + attrMissing);
 
         return attrMissing;
     }
@@ -116,12 +115,12 @@ public class Movement implements DBObject {
         this.movementDate = movementDate;
     }
 
-    public Category getCategory() {
-        return category;
+    public Detail getDetail() {
+        return detail;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setDetail(Detail detail) {
+        this.detail = detail;
     }
 
     public Currency getCurrency() {
@@ -158,7 +157,7 @@ public class Movement implements DBObject {
                 ", amount=" + amount +
                 ", currency=" + currency +
                 ", movementDate=" + movementDate +
-                ", category=" + category +
+                ", detail=" + detail +
                 ", commentary='" + commentary + '\'' +
                 ", status=" + status +
                 '}';

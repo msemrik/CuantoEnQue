@@ -15,7 +15,7 @@ public class Detail implements DBObject {
     @SequenceGenerator(name = "DETAIL_SEQ", sequenceName = "DETAIL_SEQ", allocationSize = 1)
     private Long id;
 
-    @OneToMany
+    @ManyToOne
     Category category;
 
     String name;
@@ -50,5 +50,12 @@ public class Detail implements DBObject {
         this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Detail{" +
+                "id=" + id +
+                ", category=" + category +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

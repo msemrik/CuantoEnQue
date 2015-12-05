@@ -1,6 +1,8 @@
 package com.DAO.DBAccessObjects;
 
 import com.DAO.DBAccess;
+import com.domain.Account;
+import com.domain.AccountSadder;
 import com.domain.Category;
 import com.domain.DBObject;
 import com.util.CoreException;
@@ -22,6 +24,11 @@ public class DBAccessCategory extends DBAccessObject {
         }
         return dbAccessCategoryInstance;
     }
+
+    private DBAccessCategory (){
+        this.classObject = Category.class;
+    }
+
 
     @Override
     public DBObject getObjectById(long id) throws CoreException {

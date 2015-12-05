@@ -4,6 +4,7 @@ app.controller("AlertsCtrl",function($scope, $http, $log, alertsManager){
 	alert.clearAlerts = function(){
 		alertsManager.clearAlerts();
 	}
+
 	alert.revert = function(id,typeOfMovement){
 		alertsManager.clearAlerts();
 	}
@@ -16,12 +17,7 @@ app.controller("AlertsCtrl",function($scope, $http, $log, alertsManager){
 	
 	$scope.showModal = false;
 
-	$scope.toggleModal = function(jsObject){
-		vm.modalTitle='Prueba Titulo';
-		vm.modalMessage='Prueba Mensaje';
-		$scope.showModal = !$scope.showModal;
-    };
-	
+
 });
 
 
@@ -42,3 +38,14 @@ app.factory('alertsManager', function() {
         }
     };
 });
+
+
+app.factory('modalManager', function($scope ) {
+    return {
+    showModal: function(jsonMessage) {
+                        $scope.modalTitle='Prueba Titulo';
+                		$scope.modalMessage='Prueba Mensaje';
+                		$scope.showModal = !$scope.showModal;
+            }
+    };
+	    });

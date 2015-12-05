@@ -1,13 +1,15 @@
 package com.DAO.DBAccessObjects;
 
 import com.DAO.DBAccess;
-import com.domain.Account;
-import com.domain.DBObject;
-import com.domain.Detail;
+import com.domain.*;
 import com.util.CoreException;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created by M-Sem on 28/11/2015.
@@ -26,6 +28,10 @@ public class DBAccessDetail extends DBAccessObject {
         return dbAccessDetailInstance;
     }
 
+    private DBAccessDetail (){
+        this.classObject = Detail.class;
+    }
+
     @Override
     public DBObject getObjectById(long id) throws CoreException {
         try {
@@ -38,6 +44,24 @@ public class DBAccessDetail extends DBAccessObject {
         } catch (Exception e) {
             logger.error("Error Loading Detail: " + id + ". Exception:" + e);
             throw new CoreException("Error Loading Detail: " + id + ". Exception:" + e);
+        }
+    }
+
+
+    public List<Detail> getDetailsForCategory(Category category) throws CoreException {
+        try {
+            logger.info("Loading: Detail for category: " + category);
+            Session session = DBAccess.getSession();
+
+            List <Detail> details = (List<Detail>) session.createCriteria(Detail.class)
+                    .add(Restrictions.eq("category", category));
+
+            DBAccess.closeSession(session);
+            logger.info("Successfully Loaded: Details for " + category +". Row Count: "+details.size());
+            return details;
+        } catch (Exception e) {
+            logger.error("Error Loading Details for: " + category+ ". Exception:" + e);
+            throw new CoreException("Error Loading Details for: " + category+ ". Exception:" + e);
         }
     }
 

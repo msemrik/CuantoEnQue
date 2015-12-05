@@ -1,12 +1,13 @@
 package com.DAO.DBAccessObjects;
 
 import com.DAO.DBAccess;
-import com.domain.AccountSadder;
-import com.domain.DBObject;
-import com.domain.Movement;
+import com.domain.*;
 import com.util.CoreException;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
 
 /**
  * Created by M-Sem on 28/11/2015.
@@ -24,6 +25,9 @@ public class DBAccessMovement extends DBAccessObject {
         return dbAccessMovementInstance;
     }
 
+    private DBAccessMovement (){
+        this.classObject = Movement.class;
+    }
 
     @Override
     public Movement getObjectById(long id) throws CoreException {
@@ -43,15 +47,17 @@ public class DBAccessMovement extends DBAccessObject {
     public void saveObject(DBObject dbObject) throws CoreException {
         try {
             Movement movement = (Movement) dbObject;
-            //checkNotNull(getObjectById(movement.getId()));
+            checkNotNull(getObjectById(movement.getId()));
 
+        } catch (NullPointerException e) {
+            logger.error("Error saving Movment: " + dbObject + ". to Save a new Movement you need to create AccountSadder before, invoking other method. Exception:" + e);
+            throw new CoreException("Error saving Movment: " + dbObject + ". to Save a new Movement you need to create AccountSadder before, invoking other method. Exception:" + e);
         } catch (Exception e) {
-            logger.error("Error Loading Movment: " + dbObject + ". to Save a new Movement you need to create AccountSadder before. Exception:" + e);
-            throw new CoreException("Error Loading Movment: " + dbObject + ". to Save Movement you need to create AccountSadder before. Exception:" + e);
+            logger.error("Error Loading Movement: " + dbObject + ". Exception:" + e);
+            throw new CoreException("Error Loading Movement: " + dbObject + ". Exception:" + e);
         }
 
         try {
-
             logger.info("Updating: Movement" + dbObject.getClass().getSimpleName() + " " + dbObject);
             Session session = DBAccess.getSession();
             session.getTransaction().begin();
@@ -66,10 +72,16 @@ public class DBAccessMovement extends DBAccessObject {
     }
 
 
-    public void saveMovement(Movement movement, AccountSadder origAccountSadder, AccountSadder destAccountSadder) throws CoreException {
+    public void saveMovement(Movement movement) throws CoreException {
 
         try {
-            logger.info("Saving: " + movement.getClass().getSimpleName() + " " + movement);
+            logger.info("Saving new Movement: " + movement);
+
+            movement.hasMissingParameters();
+
+            AccountSadder origAccountSadder = new AccountSadder(movement,movement.getOrigAccount());
+            AccountSadder destAccountSadder = new AccountSadder(movement,movement.getDestAccount());
+
             Session session = DBAccess.getSession();
             session.getTransaction().begin();
             session.save(movement);
@@ -77,10 +89,10 @@ public class DBAccessMovement extends DBAccessObject {
             session.save(destAccountSadder);
             session.getTransaction().commit();
             DBAccess.closeSession(session);
-            logger.info("Successfully Saved Movement: " + movement);
+            logger.info("Successfully Saved new Movement: " + movement + ". Orig Account Sadder: " + origAccountSadder + ". Dest Account Sadder: " + destAccountSadder);
         } catch (Exception e) {
-            logger.error("Error Saving Movement: " + movement + ". Exception:" + e);
-            throw new CoreException("Error Saving Movement: " + movement + ". Exception:" + e);
+            logger.error("Error Saving new Movement: " + movement + ". Exception:" + e);
+            throw new CoreException("Error Saving new Movement: " + movement + ". Exception:" + e);
         }
     }
 

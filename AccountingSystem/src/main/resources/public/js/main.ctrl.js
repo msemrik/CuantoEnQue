@@ -3,9 +3,6 @@ app.controller("MainController",function($q,$http,$scope){
 	var vm = this;
     vm.title = 'Accounting System'
 
-	var vm = this;
-    vm.title = 'Accounting System';
-
     vm.tab=1;
 
 

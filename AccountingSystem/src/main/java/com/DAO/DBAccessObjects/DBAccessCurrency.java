@@ -1,6 +1,7 @@
 package com.DAO.DBAccessObjects;
 
 import com.DAO.DBAccess;
+import com.domain.Account;
 import com.domain.Currency;
 import com.domain.DBObject;
 import com.util.CoreException;
@@ -23,7 +24,9 @@ public class DBAccessCurrency extends DBAccessObject {
         return dbAccessCurrencyInstance;
     }
 
-
+    private DBAccessCurrency (){
+        this.classObject = Currency.class;
+    }
 
     @Override
     public DBObject getObjectById(long id) throws CoreException {

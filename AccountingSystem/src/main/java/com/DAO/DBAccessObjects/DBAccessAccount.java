@@ -25,20 +25,29 @@ public class DBAccessAccount extends DBAccessObject {
         return dbAccessAccountInstance;
     }
 
+    private DBAccessAccount (){
+        this.classObject = Account.class;
+    }
+
+
     @Override
     public DBObject getObjectById(long id) throws CoreException {
+       throw new CoreException("Error! For loading Accounts use getObjectById(long id, Class<?> classType)");
+
+    }
+
+
+    public DBObject getObjectById(long id, Class<?> classType) throws CoreException {
         try{
-            logger.info("Loading: Account: "+ id);
-
+            logger.info("Loading:" + classType.getSimpleName() + "Id: " + id);
             Session session = DBAccess.getSession();
-            DBObject returnObject = (DBObject) session.get(Account.class, id);
-            DBAccess.closeSession(session);
-            logger.info("Successfully Loaded: Account: "+ returnObject);
-
-            return (Account) returnObject;
+            DBObject returnObject = (DBObject) session.get(classType, id);
+            DBAccess .closeSession(session);
+            logger.info("Successfully Loaded: " + classType.getSimpleName() + ": "+ returnObject);
+            return returnObject;
         } catch (Exception e) {
-            logger.error("Error Loading Account: " + id + ". Exception:" + e);
-            throw new CoreException("Error Loading Account: " + id + ". Exception:" + e);
+            logger.error("Error Loading: " + classType.getSimpleName() + ". Id: "+ id +". Exception:" + e);
+            throw new CoreException("Error Loading: " + classType.getSimpleName() + ". Id: "+ id +". Exception:" + e);
         }
     }
 

@@ -91,7 +91,7 @@ dependencies {
 
 task startServer(type:Exec) {
      //on windows:
-    commandLine 'cmd', '/c', 'java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n -jar build/libs/gs-rest-service-0.1.0.jar'
+    commandLine 'cmd', '/c', 'java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=9000,suspend=n -jar build/libs/gs-rest-service-0.1.0.jar'
 }
 
 task copyToLib(type: Copy) {
